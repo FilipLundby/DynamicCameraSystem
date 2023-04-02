@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgnc61n4uk28g"]
+
+[ext_resource type="Script" path="res://addons/CameraSystem/VirtualCamera.gd" id="1_21u7w"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_7km1v"]
+
+[node name="VirtualCamera" type="Node3D"]
+transform = Transform3D(0.388577, 0, 0.921416, 0, 1, 0, -0.921416, 0, 0.388577, 4.47536, 0, 2.8728)
+script = ExtResource("1_21u7w")
+current = true
+_color = Color(1, 0, 0, 1)
+_has_depth_test = null
+
+[node name="Gizmo" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_7km1v")

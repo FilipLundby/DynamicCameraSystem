@@ -1,0 +1,17 @@
+# Godot
+.import/
+export.cfg
+export_presets.cfg
+
+# GDNative
+*.os
+*.dblite
+
+# System
+.directory
+*~
+
+# Tools
+*.blend1
+
+Crap/

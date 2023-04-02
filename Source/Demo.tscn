@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0lht8w8tyu11"]
+
+[ext_resource type="PackedScene" uid="uid://cgnc61n4uk28g" path="res://addons/CameraSystem/VirtualCamera.tscn" id="1_82471"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0b0w8"]
+
+[sub_resource type="Curve3D" id="Curve3D_maek1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.220972, -0.00143575, -1.72751, 0, 0, 0, 0, 0, 0, -0.0465012, 0.0896341, -2.93427, 0, 0, 0, 0, 0, 0, -0.947537, 0.161281, -3.62089, 0, 0, 0, 0, 0, 0, -3.0018, 0.227095, -3.8969),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_4fxe7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_383dc"]
+resource_name = "follow_path"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8q0uk"]
+_data = {
+"RESET": SubResource("Animation_4fxe7"),
+"follow_path": SubResource("Animation_383dc")
+}
+
+[node name="Demo" type="Node"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.553886, 0, 0.832593, 0, 1, 0, -0.832593, 0, 0.553886, 4.82513, 0, 1.84725)
+current = true
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0b0w8")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, 0.612372, -0.612372, 8, 0, -8)
+
+[node name="VirtualCamera1" parent="." instance=ExtResource("1_82471")]
+transform = Transform3D(1, 0, 0, 0, 0.862602, 0.505883, 0, -0.505883, 0.862602, 1.04671, 1.28494, 1.63085)
+_is_visible = true
+_has_depth_test = true
+
+[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_82471")]
+transform = Transform3D(0.0644764, -0.0155146, 0.997755, 0.00563747, 0.999869, 0.0151831, -0.997899, 0.00464574, 0.0645787, 2.81283, 0.0353694, 1.0614)
+current = false
+_look_at = NodePath("../Cube")
+_is_visible = true
+_has_depth_test = true
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71642, 0.00780606, 2.14462)
+curve = SubResource("Curve3D_maek1")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.976258, 0.0159004, -0.215808, 0, 0.997295, 0.0734789, 0.216383, 0.071738, -0.973664, 0.220972, -0.00143575, -1.72751)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D/PathFollow3D"]
+autoplay = "follow_path"
+libraries = {
+"": SubResource("AnimationLibrary_8q0uk")
+}
