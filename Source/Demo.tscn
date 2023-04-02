@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0lht8w8tyu11"]
+[gd_scene load_steps=12 format=3 uid="uid://d0lht8w8tyu11"]
 
 [ext_resource type="PackedScene" uid="uid://cgnc61n4uk28g" path="res://addons/CameraSystem/VirtualCamera.tscn" id="1_82471"]
+[ext_resource type="Script" path="res://Player.gd" id="2_duhny"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0b0w8"]
 
 [sub_resource type="Curve3D" id="Curve3D_maek1"]
+bake_interval = 6.13
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.220972, -0.00143575, -1.72751, 0, 0, 0, 0, 0, 0, -0.0465012, 0.0896341, -2.93427, 0, 0, 0, 0, 0, 0, -0.947537, 0.161281, -3.62089, 0, 0, 0, 0, 0, 0, -3.0018, 0.227095, -3.8969),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 9.93906, -0.0194249, -2.41772, 0, 0, 0, 0, 0, 0, 5.93394, 1.99304, -2.46273, 0, 0, 0, 0, 0, 0, 5.19066, -0.806885, 2.24472, 0, 0, 0, 0, 0, 0, 9.7855, -0.806885, 1.70416),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -28,7 +30,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_383dc"]
 resource_name = "follow_path"
-length = 5.0
+length = 10.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -37,7 +39,7 @@ tracks/0/path = NodePath(".:progress_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
@@ -49,39 +51,75 @@ _data = {
 "follow_path": SubResource("Animation_383dc")
 }
 
+[sub_resource type="SphereMesh" id="SphereMesh_mhfv7"]
+radius = 0.15
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3varf"]
+albedo_color = Color(0, 0.392157, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jqxlm"]
+material = SubResource("StandardMaterial3D_3varf")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y4uqu"]
+
 [node name="Demo" type="Node"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.553886, 0, 0.832593, 0, 1, 0, -0.832593, 0, 0.553886, 4.82513, 0, 1.84725)
+transform = Transform3D(0.357534, 0, 0.9339, 0, 1, 0, -0.9339, 0, 0.357534, 12.6337, 0, 1.84725)
 current = true
 
 [node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.80861, 0, 0)
 mesh = SubResource("BoxMesh_0b0w8")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, 0.612372, -0.612372, 8, 0, -8)
+transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, 0.612372, -0.612373, 15.8086, 0, -8)
 
-[node name="VirtualCamera1" parent="." instance=ExtResource("1_82471")]
-transform = Transform3D(1, 0, 0, 0, 0.862602, 0.505883, 0, -0.505883, 0.862602, 1.04671, 1.28494, 1.63085)
-_is_visible = true
-_has_depth_test = true
+[node name="VirtualCamera1" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_82471")]
+transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
+current = true
+_look_at = NodePath("")
 
-[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_82471")]
-transform = Transform3D(0.0644764, -0.0155146, 0.997755, 0.00563747, 0.999869, 0.0151831, -0.997899, 0.00464574, 0.0645787, 2.81283, 0.0353694, 1.0614)
-current = false
+[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_82471")]
+transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
 _look_at = NodePath("../Cube")
-_is_visible = true
-_has_depth_test = true
+_follow = NodePath("../Path3D/PathFollow3D")
+
+[node name="VirtualCamera3" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_82471")]
+transform = Transform3D(0.999872, 0, 0.0155463, 0, 0.999999, 0, -0.0155532, 0, 0.999825, 6.18364, 1.63094, 0.441235)
+_look_at = NodePath("../CharacterBody3D/Player")
+_follow = NodePath("../CharacterBody3D/Player/MeshInstance3D")
+transition_speed = 5.0
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71642, 0.00780606, 2.14462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0456777, 0, 0)
 curve = SubResource("Curve3D_maek1")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.976258, 0.0159004, -0.215808, 0, 0.997295, 0.0734789, 0.216383, 0.071738, -0.973664, 0.220972, -0.00143575, -1.72751)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D/PathFollow3D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D"]
+root_node = NodePath("../PathFollow3D")
 autoplay = "follow_path"
 libraries = {
 "": SubResource("AnimationLibrary_8q0uk")
 }
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.0112367, 0.448929, -0.893494, -2.98006e-08, 0.893553, 0.448956, 0.99988, 0.00504511, -0.0100411, 9.93906, -0.0194249, -2.41772)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34046, 0, 0)
+script = ExtResource("2_duhny")
+
+[node name="Player" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("SphereMesh_mhfv7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Player"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 2)
+mesh = SubResource("SphereMesh_jqxlm")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_y4uqu")
