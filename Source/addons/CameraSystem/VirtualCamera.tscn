@@ -3,17 +3,17 @@
 [ext_resource type="Script" path="res://addons/CameraSystem/VirtualCamera.gd" id="1_21u7w"]
 [ext_resource type="Script" path="res://addons/CameraSystem/CameraGizmo.gd" id="2_ivs0s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4gcy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux4yo"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_snpm0"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_v26s4"]
 
 [node name="VirtualCamera" type="Node3D"]
 script = ExtResource("1_21u7w")
 
 [node name="Gizmo" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_q4gcy")
-mesh = SubResource("ImmediateMesh_snpm0")
+material_override = SubResource("StandardMaterial3D_ux4yo")
+mesh = SubResource("ImmediateMesh_v26s4")
 script = ExtResource("2_ivs0s")

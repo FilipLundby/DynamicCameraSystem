@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0lht8w8tyu11"]
+[gd_scene load_steps=13 format=3 uid="uid://tfii68fe0b5b"]
 
-[ext_resource type="PackedScene" uid="uid://cgnc61n4uk28g" path="res://addons/CameraSystem/VirtualCamera.tscn" id="1_82471"]
-[ext_resource type="Script" path="res://Player.gd" id="2_duhny"]
+[ext_resource type="PackedScene" uid="uid://cgnc61n4uk28g" path="res://addons/CameraSystem/VirtualCamera.tscn" id="1_xfpa1"]
+[ext_resource type="Script" path="res://addons/CameraSystem/Example/Player.gd" id="2_t2gdl"]
+[ext_resource type="Script" path="res://addons/CameraSystem/Example/CameraNextButton.gd" id="3_p0810"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0b0w8"]
 
@@ -64,6 +65,7 @@ radius = 0.1
 height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y4uqu"]
+radius = 0.15
 
 [node name="Demo" type="Node"]
 
@@ -78,24 +80,24 @@ mesh = SubResource("BoxMesh_0b0w8")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, 0.612372, -0.612373, 15.8086, 0, -8)
 
-[node name="VirtualCamera1" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_82471")]
+[node name="VirtualCamera1" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_xfpa1")]
 transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
 current = true
 _look_at = NodePath("")
 
-[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_82471")]
+[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
 transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
 _look_at = NodePath("../Cube")
 _follow = NodePath("../Path3D/PathFollow3D")
 
-[node name="VirtualCamera3" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_82471")]
-transform = Transform3D(0.999872, 0, 0.0155463, 0, 0.999999, 0, -0.0155532, 0, 0.999825, 6.18364, 1.63094, 0.441235)
-_look_at = NodePath("../CharacterBody3D/Player")
-_follow = NodePath("../CharacterBody3D/Player/MeshInstance3D")
-transition_speed = 5.0
+[node name="VirtualCamera3" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
+transform = Transform3D(0.999872, 0, 0.0155463, 0, 0.999999, 0, -0.0155532, 0, 0.999825, 9.77772, 1.14396, 1.26405)
+_look_at = NodePath("../Player/PlayerMesh")
+_follow = NodePath("../Player/PlayerMesh/CameraFollowTarget")
+transition_speed = 3.0
+rotation_speed = 2.0
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0456777, 0, 0)
 curve = SubResource("Curve3D_maek1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Path3D"]
@@ -106,20 +108,46 @@ libraries = {
 }
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.0112367, 0.448929, -0.893494, -2.98006e-08, 0.893553, 0.448956, 0.99988, 0.00504511, -0.0100411, 9.93906, -0.0194249, -2.41772)
+transform = Transform3D(-0.0112367, 0.448929, -0.893494, -2.98006e-08, 0.893553, 0.448956, 0.999879, 0.00504511, -0.0100411, 9.93906, -0.0194249, -2.41772)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34046, 0, 0)
-script = ExtResource("2_duhny")
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64835, 0, 0.13141)
+script = ExtResource("2_t2gdl")
 
-[node name="Player" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("SphereMesh_mhfv7")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Player"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 2)
+[node name="CameraFollowTarget" type="MeshInstance3D" parent="Player/PlayerMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+visible = false
 mesh = SubResource("SphereMesh_jqxlm")
 skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="PlayerShape" type="CollisionShape3D" parent="Player"]
 shape = SubResource("SphereShape3D_y4uqu")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -71.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CameraNextButton" type="Button" parent="UI/MarginContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Next Camera"
+script = ExtResource("3_p0810")

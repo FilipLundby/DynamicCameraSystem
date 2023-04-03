@@ -7,6 +7,7 @@ extends MeshInstance3D
 @export var _is_visible: bool = false
 @export var _has_depth_test = true
 @export var _color: Color = Color(0, 0.85, 0.99)
+@export var _color_top: Color = Color(1, 0, 0)
 
 var _gizmo_material: StandardMaterial3D = StandardMaterial3D.new()
 var _gizmo_width: float = 0.35
@@ -30,8 +31,8 @@ func _draw_gizmo() -> void:
 	var length = _gizmo_length * .5
 	draw_line(Vector3(0, 0, 0), Vector3(width, height, -length), _color)
 	draw_line(Vector3(0, 0, 0), Vector3(-width, height, -length), _color)
-	draw_line(Vector3(width, height, -length), Vector3(-width, height, -length), _color)
-#
+	draw_line(Vector3(width, height, -length), Vector3(-width, height, -length), _color_top)
+
 	draw_line(Vector3(0, 0, 0), Vector3(width, -height, -length), _color)
 	draw_line(Vector3(0, 0, 0), Vector3(-width, -height, -length), _color)
 	draw_line(Vector3(width, -height, -length), Vector3(-width, -height, -length), _color)
