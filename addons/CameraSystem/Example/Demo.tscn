@@ -80,22 +80,21 @@ mesh = SubResource("BoxMesh_0b0w8")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, 0.612372, -0.612373, 15.8086, 0, -8)
 
-[node name="VirtualCamera1" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_xfpa1")]
+[node name="CameraDynamic1" parent="." node_paths=PackedStringArray("_look_at") instance=ExtResource("1_xfpa1")]
 transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
 current = true
 _look_at = NodePath("")
 
-[node name="VirtualCamera2" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
+[node name="CameraDynamic2" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
 transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
 _look_at = NodePath("../Cube")
 _follow = NodePath("../Path3D/PathFollow3D")
 
-[node name="VirtualCamera3" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
+[node name="CameraDynamic3" parent="." node_paths=PackedStringArray("_look_at", "_follow") instance=ExtResource("1_xfpa1")]
 transform = Transform3D(0.999872, 0, 0.0155463, 0, 0.999999, 0, -0.0155532, 0, 0.999825, 9.77772, 1.14396, 1.26405)
 _look_at = NodePath("../Player/PlayerMesh")
 _follow = NodePath("../Player/PlayerMesh/CameraFollowTarget")
-transition_speed = 3.0
-rotation_speed = 2.0
+rotation_speed = 3.0
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_maek1")

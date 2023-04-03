@@ -41,29 +41,30 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if !Engine.is_editor_hint():
-		if _last_current != current:
-			camera_switched.emit(current)
+	if Engine.is_editor_hint():
+		return
+	
+	if _last_current != current:
+		camera_switched.emit(current)
+	
+	if _follow != null:
+		var target_transform = _follow.global_transform if _follow != null else global_transform
+		_current_transform = _current_transform.interpolate_with(target_transform, delta * transition_speed)
+
+	if current:
+		var camera = get_viewport().get_camera_3d()
+		camera.global_transform = _current_transform
+
+		if _look_at != null:
+			var looking_at = camera.global_transform.looking_at(_look_at.global_position, Vector3.UP)
+			_current_transform = camera.global_transform.interpolate_with(looking_at, delta * rotation_speed)
 		
-		if _follow != null:
-			var target_transform = _follow.global_transform if _follow != null else global_transform
-			_current_transform = _current_transform.interpolate_with(target_transform, delta * transition_speed)
-
-		if current:
-			get_viewport().get_camera_3d().global_transform = _current_transform
-
-			if _look_at != null:
-				var camera = get_viewport().get_camera_3d()
-				var looking_at = camera.global_transform.looking_at(_look_at.global_position, Vector3.UP)
-				_current_transform = camera.global_transform.interpolate_with(looking_at, delta * rotation_speed)
-			
-		else:
-			global_transform = _current_transform
-			
-			if _look_at != null:
-				var looking_at = global_transform.looking_at(_look_at.global_position, Vector3.UP)
-				_current_transform = global_transform.interpolate_with(looking_at, delta * rotation_speed)
-
+	else:
+		global_transform = _current_transform
+		
+		if _look_at != null:
+			var looking_at = global_transform.looking_at(_look_at.global_position, Vector3.UP)
+			_current_transform = global_transform.interpolate_with(looking_at, delta * rotation_speed)
 
 	_last_current = current
 
