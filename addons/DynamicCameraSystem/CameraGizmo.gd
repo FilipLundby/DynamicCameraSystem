@@ -51,4 +51,11 @@ func _redraw(gizmo):
 	lines.push_back(Vector3(width, height, -length))
 	lines.push_back(Vector3(-width, height, -length))
 	
+	var offset = 0.125
+	lines.push_back(Vector3(-width * 0.5 + offset * 2, height + offset, -length))
+	lines.push_back(Vector3(-width * 0.5 + offset, height, -length))
+
+	lines.push_back(Vector3(width * 0.5 - offset * 2, height + offset, -length))
+	lines.push_back(Vector3(width * 0.5 - offset, height, -length))
+	
 	gizmo.add_lines(lines, get_material("main", gizmo), false)

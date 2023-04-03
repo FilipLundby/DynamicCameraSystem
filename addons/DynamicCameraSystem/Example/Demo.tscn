@@ -110,7 +110,7 @@ libraries = {
 }
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.0112367, 0.448929, -0.893494, -2.98006e-08, 0.893553, 0.448956, 0.999879, 0.00504511, -0.0100411, 9.93906, -0.0194249, -2.41772)
+transform = Transform3D(-0.0112367, 0.448928, -0.893493, -2.98005e-08, 0.89355, 0.448956, 0.999877, 0.00504509, -0.0100411, 9.93906, -0.0194249, -2.41772)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.64835, 0, 0.13141)
