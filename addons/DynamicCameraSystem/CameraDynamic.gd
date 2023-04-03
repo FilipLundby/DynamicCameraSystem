@@ -1,12 +1,11 @@
 @tool
 extends Node3D
-class_name CameraDynamic 
+#class_name CameraDynamic 
 
 signal camera_switched
 
 @onready var _tree: SceneTree = get_tree()
 @onready var _viewport: Viewport = get_viewport()
-@onready var _gizmo: MeshInstance3D = $Gizmo
 
 @export var current: bool = false:
 	get:
@@ -82,10 +81,12 @@ func _on_camera_switched(is_current: bool):
 func _set_other_cameras_disabled():
 	var nodes = _tree.get_nodes_in_group(CAMERA_GROUP)
 	for node in nodes:
-		if not node is CameraDynamic:
-			continue
+#		if not node is CameraDynamic:
+#			continue
 		if node == self:
 			continue
-		(node as CameraDynamic).current = false
+		if not "current" in node:
+			continue
+		node.current = false
 
 

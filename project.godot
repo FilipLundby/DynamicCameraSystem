@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Camera System"
-run/main_scene="res://addons/CameraSystem/Example/Demo.tscn"
+run/main_scene="res://addons/DynamicCameraSystem/Example/Demo.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 
 [dotnet]
 
 project/assembly_name="Camera System"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/DynamicCameraSystem/plugin.cfg")
 
 [filesystem]
 
