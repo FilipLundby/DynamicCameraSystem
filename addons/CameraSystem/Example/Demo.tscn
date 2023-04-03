@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://tfii68fe0b5b"]
+[gd_scene load_steps=13 format=3 uid="uid://dkpobat7v0r4e"]
 
-[ext_resource type="PackedScene" uid="uid://cgnc61n4uk28g" path="res://addons/CameraSystem/VirtualCamera.tscn" id="1_xfpa1"]
+[ext_resource type="PackedScene" path="res://addons/CameraSystem/CameraDynamic.tscn" id="1_xfpa1"]
 [ext_resource type="Script" path="res://addons/CameraSystem/Example/Player.gd" id="2_t2gdl"]
 [ext_resource type="Script" path="res://addons/CameraSystem/Example/CameraNextButton.gd" id="3_p0810"]
 

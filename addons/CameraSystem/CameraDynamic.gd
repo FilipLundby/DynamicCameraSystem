@@ -1,6 +1,6 @@
 @tool
-class_name VirtualCamera 
 extends Node3D
+class_name CameraDynamic 
 
 signal camera_switched
 
@@ -21,7 +21,7 @@ signal camera_switched
 @export var transition_speed: float = 1.0
 @export var rotation_speed: float = 1.0
 
-const CAMERA_GROUP: String = "virtual_camera"
+const CAMERA_GROUP: String = "camera_dynamic"
 var _last_current: bool = current
 var _camera: Camera3D 
 var _current_transform: Transform3D 
@@ -37,7 +37,6 @@ func _ready() -> void:
 		camera_switched.connect(_on_camera_switched)
 		if current and get_viewport().get_camera_3d() != null:
 			get_viewport().get_camera_3d().global_transform = global_transform
-
 
 
 func _process(delta: float) -> void:
@@ -83,10 +82,10 @@ func _on_camera_switched(is_current: bool):
 func _set_other_cameras_disabled():
 	var nodes = _tree.get_nodes_in_group(CAMERA_GROUP)
 	for node in nodes:
-		if not node is VirtualCamera:
+		if not node is CameraDynamic:
 			continue
 		if node == self:
 			continue
-		(node as VirtualCamera).current = false
+		(node as CameraDynamic).current = false
 
 
