@@ -50,20 +50,14 @@ func _process(delta: float) -> void:
 		var target_transform = _follow.global_transform if _follow != null else global_transform
 		_current_transform = _current_transform.interpolate_with(target_transform, delta * transition_speed)
 
-	if current:
-		var camera = get_viewport().get_camera_3d()
-		camera.global_transform = _current_transform
-
-		if _look_at != null:
-			var looking_at = camera.global_transform.looking_at(_look_at.global_position, Vector3.UP)
-			_current_transform = camera.global_transform.interpolate_with(looking_at, delta * rotation_speed)
+	if _look_at != null:
+		var looking_at = _current_transform.looking_at(_look_at.global_position, Vector3.UP)
+		_current_transform = _current_transform.interpolate_with(looking_at, delta * rotation_speed)
 		
+	if current:
+		get_viewport().get_camera_3d().global_transform = _current_transform
 	else:
 		global_transform = _current_transform
-		
-		if _look_at != null:
-			var looking_at = global_transform.looking_at(_look_at.global_position, Vector3.UP)
-			_current_transform = global_transform.interpolate_with(looking_at, delta * rotation_speed)
 
 	_last_current = current
 
@@ -82,11 +76,9 @@ func _on_camera_switched(is_current: bool):
 func _set_other_cameras_disabled():
 	var nodes = _tree.get_nodes_in_group(CAMERA_GROUP)
 	for node in nodes:
-#		if not node is CameraDynamic:
-#			continue
-		if node == self:
+		if not node is CameraDynamic3D:
 			continue
-		if not "current" in node:
+		if node == self:
 			continue
 		node.current = false
 

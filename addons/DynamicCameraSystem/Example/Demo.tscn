@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyi6uuirquhhn"]
+[gd_scene load_steps=14 format=3 uid="uid://cyi6uuirquhhn"]
 
 [ext_resource type="Script" path="res://addons/DynamicCameraSystem/CameraDynamic3D.gd" id="1_5x5sb"]
 [ext_resource type="Script" path="res://addons/DynamicCameraSystem/Example/Player.gd" id="2_t2gdl"]
+[ext_resource type="Material" uid="uid://d14avqjseikcf" path="res://addons/DynamicCameraSystem/Example/Pink.tres" id="2_ux2kq"]
 [ext_resource type="Script" path="res://addons/DynamicCameraSystem/Example/CameraNextButton.gd" id="3_p0810"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0b0w8"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_fakjx"]
+material = ExtResource("2_ux2kq")
+size = Vector3(0.5, 0.5, 0.3)
 
 [sub_resource type="Curve3D" id="Curve3D_maek1"]
 bake_interval = 6.13
@@ -56,13 +61,10 @@ _data = {
 radius = 0.15
 height = 0.3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3varf"]
-albedo_color = Color(0, 0.392157, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_jqxlm"]
-material = SubResource("StandardMaterial3D_3varf")
-radius = 0.1
-height = 0.2
+[sub_resource type="SphereMesh" id="SphereMesh_milge"]
+material = ExtResource("2_ux2kq")
+radius = 0.05
+height = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y4uqu"]
 radius = 0.15
@@ -86,11 +88,22 @@ script = ExtResource("1_5x5sb")
 current = true
 _look_at = NodePath("")
 
+[node name="Debug3" type="MeshInstance3D" parent="CameraDynamic1"]
+transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999998, -4.37115e-08, 0, 0, 0.2)
+mesh = SubResource("PrismMesh_fakjx")
+skeleton = NodePath("../..")
+
 [node name="CameraDynamic2" type="Node3D" parent="." node_paths=PackedStringArray("_look_at", "_follow")]
 transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
 script = ExtResource("1_5x5sb")
 _look_at = NodePath("../Cube")
 _follow = NodePath("../Path3D/PathFollow3D")
+rotation_speed = 10.0
+
+[node name="Debug2" type="MeshInstance3D" parent="CameraDynamic2"]
+transform = Transform3D(1.00006, 0, 0, 0, -4.37116e-08, -1, 0, 1.00001, -4.37115e-08, 0, 0, 0.2)
+mesh = SubResource("PrismMesh_fakjx")
+skeleton = NodePath("../..")
 
 [node name="CameraDynamic3" type="Node3D" parent="." node_paths=PackedStringArray("_look_at", "_follow")]
 transform = Transform3D(0.999872, -0.00215196, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
@@ -98,6 +111,11 @@ script = ExtResource("1_5x5sb")
 _look_at = NodePath("../Player/PlayerMesh")
 _follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
 rotation_speed = 3.0
+
+[node name="Debug" type="MeshInstance3D" parent="CameraDynamic3"]
+transform = Transform3D(1.00001, 0, -4.65661e-10, -2.32831e-10, -4.47035e-08, -1, 1.86265e-09, 1.00005, -2.98023e-08, 0, 0, 0.300016)
+mesh = SubResource("PrismMesh_fakjx")
+skeleton = NodePath("../..")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_maek1")
@@ -121,9 +139,8 @@ mesh = SubResource("SphereMesh_mhfv7")
 skeleton = NodePath("../..")
 
 [node name="FollowTargetDebug" type="MeshInstance3D" parent="Player/PlayerMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
-visible = false
-mesh = SubResource("SphereMesh_jqxlm")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, 2)
+mesh = SubResource("SphereMesh_milge")
 skeleton = NodePath("../../..")
 
 [node name="PlayerShape" type="CollisionShape3D" parent="Player"]
