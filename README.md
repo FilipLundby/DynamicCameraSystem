@@ -3,7 +3,7 @@
 This plugin lets you: 
 
 * dynamically tween between camera position
-* smooth follow a node of your choise
+* and/or smooth follow a node of your choise
 * and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
 
 
