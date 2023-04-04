@@ -29,7 +29,7 @@ all the others.
 ```GDScript
 func _ready() -> void:
 	var dyna_cams: Array[Node] = get_tree().get_nodes_in_group("camera_dynamic")
-	var is_cam_dyna = dyna_cams[0] is CameraDynamic
+	var is_cam_dyna = dyna_cams[0] is CameraDynamic3D
 	if is_cam_dyna:
 		dyna_cams[0].look_at
 ```
