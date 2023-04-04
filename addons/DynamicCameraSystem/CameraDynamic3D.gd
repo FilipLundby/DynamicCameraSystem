@@ -1,6 +1,7 @@
 @tool
+@icon("CameraDynamic3D.svg")
+class_name CameraDynamic3D
 extends Node3D
-#class_name CameraDynamic 
 
 signal camera_switched
 

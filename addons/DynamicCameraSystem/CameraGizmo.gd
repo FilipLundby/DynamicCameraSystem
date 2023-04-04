@@ -1,7 +1,7 @@
 extends EditorNode3DGizmoPlugin
 
 
-const MyCustomNode3D = preload("CameraDynamic.gd")
+const CAMERA_DYNAMIC_3D = preload("CameraDynamic3D.gd")
 
 var width: float = .5
 var height: float = .3
@@ -9,7 +9,7 @@ var length: float = .5
 
 
 func _get_gizmo_name() -> String:
-	return "CustomNode"
+	return "CameraDynamicGizmo"
 
 
 func _init():
@@ -17,7 +17,7 @@ func _init():
 
 
 func _has_gizmo(node):
-	return node is MyCustomNode3D
+	return node is CAMERA_DYNAMIC_3D
 
 
 func _redraw(gizmo):

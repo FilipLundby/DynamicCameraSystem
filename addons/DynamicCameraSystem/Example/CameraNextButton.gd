@@ -14,6 +14,6 @@ func _on_button_up() -> void:
 		_index = 0
 	else:	
 		_index += 1
-	if _cameras[_index] is CameraDynamic:
+	if _cameras[_index] is CameraDynamic3D:
 		_cameras[_index].current = true
 	
