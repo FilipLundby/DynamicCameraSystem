@@ -1,9 +1,15 @@
 # Dynamic Camera System for Godot 4+
 
+This plugin lets you: 
+
+* dynamically tween between camera position
+* smooth follow a node of your choise
+* and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
+
 
 ## Usage
 
-1. Install the plugin and enable it through `Project Settings` -> `Plugins`.
+1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`.
 2. Add a `Camera3D` to your scene (if you haven't already).
 3. Add one or more `CameraDynamic3D` nodes.
 4. Place the `CameraDynamic3D` at the root level of your scene tree.
@@ -11,14 +17,14 @@
 
 You are now ready to make the camera follow or look at whatever you want.
 
-*If you've got multiple `CameraDynamic3D` in your scene make sure only one is 
-checked. Setting a camrea as `current` at runtime will automatically disable 
+*If you've got multiple `CameraDynamic3D` in your scene, make sure only one is 
+checked. Setting a camera as `current` at runtime will automatically disable 
 all the others.
 
 
 ## Examples
 
-### Accessing cameras through groups
+### Access cameras through groups
 
 ```GDScript
 func _ready() -> void:
