@@ -8,13 +8,9 @@ signal camera_switched
 @onready var _tree: SceneTree = get_tree()
 @onready var _viewport: Viewport = get_viewport()
 
-@export var current: bool = false:
-	get:
-		return current
-	set(value):
-		current = value
-@onready @export var _look_at: Node3D
-@onready @export var _follow: Node3D
+@export var current: bool = false
+@onready @export var watch: Node3D
+@onready @export var follow: Node3D
 
 @export_category("Transition")
 @export var has_transition: bool = true
@@ -48,11 +44,11 @@ func _process(delta: float) -> void:
 	if _last_current != current:
 		camera_switched.emit(current)
 	
-	var target_transform = _follow.global_transform if _follow != null else global_transform
+	var target_transform = follow.global_transform if follow != null else global_transform
 	_current_transform = _current_transform.interpolate_with(target_transform, delta * speed_movement)
 
-	if _look_at != null:
-		var looking_at = _current_transform.looking_at(_look_at.global_position, Vector3.UP)
+	if watch != null:
+		var looking_at = _current_transform.looking_at(watch.global_position, Vector3.UP)
 		_current_transform = _current_transform.interpolate_with(looking_at, delta * speed_rotation)
 		
 	if current:
