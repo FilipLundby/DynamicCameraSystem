@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 	if _last_current != current:
 		camera_switched.emit(current)
 	
+	if follow != null:
+		top_level = true
+	
 	var target_transform = follow.global_transform if follow != null else global_transform
 	_current_transform = _current_transform.interpolate_with(target_transform, delta * speed_movement)
 

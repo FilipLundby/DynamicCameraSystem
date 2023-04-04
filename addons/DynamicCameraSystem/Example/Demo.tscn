@@ -103,9 +103,11 @@ transform = Transform3D(1.00006, 0, 0, 0, -4.37116e-08, -1, 0, 1.00001, -4.37115
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
 
-[node name="CameraDynamic3" type="Node3D" parent="."]
-transform = Transform3D(0.999872, -0.00215196, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
+[node name="CameraDynamic3" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow")]
+transform = Transform3D(0.999872, -0.002152, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
 script = ExtResource("1_5x5sb")
+watch = NodePath("../Player/PlayerMesh")
+follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
 speed_rotation = 3.0
 
 [node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic3"]

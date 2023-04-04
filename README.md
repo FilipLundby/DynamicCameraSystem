@@ -12,8 +12,7 @@ This plugin lets you:
 1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`.
 2. Add a `Camera3D` to your scene (if you haven't already).
 3. Add one or more `CameraDynamic3D` nodes.
-4. Place the `CameraDynamic3D` at the root level of your scene tree.
-5. Tick the `current` checkbox on `CameraDynamic3D`*. 
+4. Tick the `current` checkbox on `CameraDynamic3D`*. 
 
 You are now ready to make the camera follow or look at whatever you want.
 
