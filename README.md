@@ -48,9 +48,9 @@ func _on_camera_switched(is_current: bool):
 ## Properties
 
 ```GDScript
-current 			# bool
-follow				# NodePath
-watch				# NodePath
+current 		# bool
+follow			# NodePath
+watch			# NodePath
 has_transition		# bool
 speed_movement		# float
 speed_rotation		# float
@@ -62,7 +62,7 @@ speed_rotation		# float
 camera_switched
 ```
 
-### Ideas for improvements
+## Ideas for improvements
 
 * Centralize enabling/disabling of cameras
 * Allow non-interpolation using RemoteTransform
