@@ -88,7 +88,7 @@ script = ExtResource("1_5x5sb")
 current = true
 _look_at = NodePath("")
 
-[node name="Debug3" type="MeshInstance3D" parent="CameraDynamic1"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic1"]
 transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999998, -4.37115e-08, 0, 0, 0.2)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
@@ -98,9 +98,10 @@ transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.057
 script = ExtResource("1_5x5sb")
 _look_at = NodePath("../Cube")
 _follow = NodePath("../Path3D/PathFollow3D")
-rotation_speed = 10.0
+has_transition = false
+speed_rotation = 5.0
 
-[node name="Debug2" type="MeshInstance3D" parent="CameraDynamic2"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic2"]
 transform = Transform3D(1.00006, 0, 0, 0, -4.37116e-08, -1, 0, 1.00001, -4.37115e-08, 0, 0, 0.2)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
@@ -110,9 +111,9 @@ transform = Transform3D(0.999872, -0.00215196, 0.0153967, 0, 0.990381, 0.138353,
 script = ExtResource("1_5x5sb")
 _look_at = NodePath("../Player/PlayerMesh")
 _follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
-rotation_speed = 3.0
+speed_rotation = 3.0
 
-[node name="Debug" type="MeshInstance3D" parent="CameraDynamic3"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic3"]
 transform = Transform3D(1.00001, 0, -4.65661e-10, -2.32831e-10, -4.47035e-08, -1, 1.86265e-09, 1.00005, -2.98023e-08, 0, 0, 0.300016)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
@@ -148,7 +149,7 @@ shape = SubResource("SphereShape3D_y4uqu")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="ButtonContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -164,7 +165,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="CameraNextButton" type="Button" parent="UI/MarginContainer"]
+[node name="CameraNextButton" type="Button" parent="UI/ButtonContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 4

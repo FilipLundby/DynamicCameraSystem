@@ -18,8 +18,8 @@ signal camera_switched
 
 @export_category("Transition")
 @export var has_transition: bool = true
-@export var transition_speed: float = 1.0
-@export var rotation_speed: float = 1.0
+@export var speed_movement: float = 1.0
+@export var speed_rotation: float = 1.0
 
 const CAMERA_GROUP: String = "camera_dynamic"
 var _last_current: bool = current
@@ -30,13 +30,15 @@ var _current_rotation: Vector3
 
 
 func _ready() -> void:
-	add_to_group(CAMERA_GROUP)
+	if Engine.is_editor_hint():
+		return
 	
-	if !Engine.is_editor_hint():
-		_current_transform = global_transform
-		camera_switched.connect(_on_camera_switched)
-		if current and get_viewport().get_camera_3d() != null:
-			get_viewport().get_camera_3d().global_transform = global_transform
+	add_to_group(CAMERA_GROUP)
+	_camera = _viewport.get_camera_3d()
+	_current_transform = global_transform
+	camera_switched.connect(_on_camera_switched)
+	if current and _camera != null:
+		_camera.global_transform = global_transform
 
 
 func _process(delta: float) -> void:
@@ -46,16 +48,15 @@ func _process(delta: float) -> void:
 	if _last_current != current:
 		camera_switched.emit(current)
 	
-	if _follow != null:
-		var target_transform = _follow.global_transform if _follow != null else global_transform
-		_current_transform = _current_transform.interpolate_with(target_transform, delta * transition_speed)
+	var target_transform = _follow.global_transform if _follow != null else global_transform
+	_current_transform = _current_transform.interpolate_with(target_transform, delta * speed_movement)
 
 	if _look_at != null:
 		var looking_at = _current_transform.looking_at(_look_at.global_position, Vector3.UP)
-		_current_transform = _current_transform.interpolate_with(looking_at, delta * rotation_speed)
+		_current_transform = _current_transform.interpolate_with(looking_at, delta * speed_rotation)
 		
 	if current:
-		get_viewport().get_camera_3d().global_transform = _current_transform
+		_camera.global_transform = _current_transform
 	else:
 		global_transform = _current_transform
 
@@ -63,14 +64,12 @@ func _process(delta: float) -> void:
 
 
 func _on_camera_switched(is_current: bool):
+	if !is_current:
+		return
+	_set_other_cameras_disabled()
+
 	if has_transition:
-		_current_transform = get_viewport().get_camera_3d().global_transform if is_current else global_transform
-	
-#	if has_transition:
-#		_current_transform = get_viewport().get_camera_3d().global_transform
-	
-	if is_current:
-		_set_other_cameras_disabled()
+		_current_transform = _camera.global_transform 
 
 
 func _set_other_cameras_disabled():
