@@ -13,14 +13,14 @@ This plugin lets you:
 2. Add a `Camera3D` to your scene (if you haven't already).
 3. Add one or more `CameraDynamic` nodes.
 
-You are now ready to make the camera follow or look at whatever you want.
+You are now ready to make the `CameraDynamic` follow or look at whatever you want. See the exposed properties in the inspector.
 
 Optionally you can also add a `CameraSwitcher` node. It lets you manually switch between cameras. Useful while testing.
 
 
 ## Examples
 
-### Access cameras through groups
+### Access cameras
 
 ```GDScript
 func _ready() -> void:
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 ```GDScript
 func _ready() -> void:
-	var node = CameraManager.get_current_camera()
+	var current_camera: CameraDynamic = CameraManager.get_current_camera()
 ```
 
 ### Set a camera as current
@@ -48,8 +48,8 @@ func _ready() -> void:
 func _ready() -> void:
 	CameraManager.camera_switched.connect(_on_camera_switched)
 
-func _on_camera_switched(node: CameraDynamic):
-	print("The current camera is: ", node.name)
+func _on_camera_switched(current_camera: CameraDynamic):
+	print("The current camera is: ", current_camera.name)
 ```
 
 
