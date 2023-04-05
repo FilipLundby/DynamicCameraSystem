@@ -42,6 +42,17 @@ func _ready() -> void:
 	CameraManager.set_current_camera(cams[0])
 ```
 
+### Add and remove cameras 
+
+```GDScript
+func _ready() -> void:
+	var cam = CameraDynamic.new()
+	# Add
+	add_child(cam)
+	# Remove
+	cam.queue_free()
+```
+
 ### Listen for camera switching
 
 ```GDScript
