@@ -11,14 +11,11 @@ This plugin lets you:
 
 1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`.
 2. Add a `Camera3D` to your scene (if you haven't already).
-3. Add one or more `CameraDynamic3D` nodes.
-4. Tick the `current` checkbox on `CameraDynamic3D`*. 
+3. Add one or more `CameraDynamic` nodes.
 
 You are now ready to make the camera follow or look at whatever you want.
 
-*If you've got multiple `CameraDynamic3D` in your scene, make sure only one is 
-checked. Setting a camera as `current` at runtime will automatically disable 
-all the others.
+Optionally you can also add a `CameraSwitcher` node. It lets you manually switch between cameras. Useful while testing.
 
 
 ## Examples
@@ -27,27 +24,38 @@ all the others.
 
 ```GDScript
 func _ready() -> void:
-	var dyna_cams: Array[Node] = get_tree().get_nodes_in_group("camera_dynamic")
-	var is_cam_dyna = dyna_cams[0] is CameraDynamic3D
-	if is_cam_dyna:
-		dyna_cams[0].look_at
+	var cams: Array = CameraManager.get_cameras()
+```
+
+### Get current camera
+
+```GDScript
+func _ready() -> void:
+	var node = CameraManager.get_current_camera()
+```
+
+### Set a camera as current
+
+```GDScript
+func _ready() -> void:
+	var cams: Array = CameraManager.get_cameras()
+	CameraManager.set_current_camera(cams[0])
 ```
 
 ### Listen for camera switching
 
 ```GDScript
 func _ready() -> void:
-	var dyna_cams: Array[Node] = get_tree().get_nodes_in_group("camera_dynamic")
-	dyna_cams[0].camera_switched.connect(_on_camera_switched)
+	CameraManager.camera_switched.connect(_on_camera_switched)
 
-func _on_camera_switched(is_current: bool):
-	print("Is this the current camera: ", is_current)
+func _on_camera_switched(node: CameraDynamic):
+	print("The current camera is: ", node.name)
 ```
 
-## Properties
+
+## CameraDynamic properties
 
 ```GDScript
-current 		# bool
 follow			# NodePath
 watch			# NodePath
 has_transition		# bool
@@ -55,7 +63,7 @@ speed_movement		# float
 speed_rotation		# float
 ```
 
-## Signals
+## CameraManager signals
 
 ```GDScript
 camera_switched
