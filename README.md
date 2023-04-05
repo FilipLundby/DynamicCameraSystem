@@ -73,6 +73,10 @@ camera_switched
 Hi I'm Filip and I made this. [Catch me on Twitter](https://twitter.com/skooterkurt).
 
 
+## CREDITS
+
+* videocam icon by [ionic.io](https://ionic.io/ionicons)
+
 ## MIT License
 
 Copyright (c) 2023 Filip Lundby
