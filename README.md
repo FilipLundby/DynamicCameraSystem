@@ -58,7 +58,7 @@ func _on_camera_switched(current_camera: CameraDynamic):
 ```GDScript
 follow		# A node the camera should follow
 watch		# A node the camera should look at
-has_transition	# Whether or not there should be a transition between the previous and the current camera 
+has_transition	# Whether there should be a transition between the previous and the current camera 
 speed_movement	# Position interpolation speed
 speed_rotation	# Rotation interpolation speed
 ```
