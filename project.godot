@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.0", "Forward Plus")
 
 [autoload]
 
-CameraDynamicBrain="*res://addons/DynamicCameraSystem/CameraDynamicBrain.gd"
+CameraManager="*res://addons/DynamicCameraSystem/CameraManager.gd"
 
 [dotnet]
 

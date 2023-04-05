@@ -5,7 +5,7 @@ var _index = 0
 
 
 func _ready() -> void:
-	_cameras = CameraDynamicBrain.get_cameras()
+	_cameras = CameraManager.get_cameras()
 	button_up.connect(_on_button_up)
 
 
@@ -14,6 +14,6 @@ func _on_button_up() -> void:
 		_index = 0
 	else:	
 		_index += 1
-	if _cameras[_index] is CameraDynamic3D:
-		CameraDynamicBrain.set_current_camera(_cameras[_index])
+	if _cameras[_index] is CameraDynamic:
+		CameraManager.set_current_camera(_cameras[_index])
 	

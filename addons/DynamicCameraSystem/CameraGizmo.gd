@@ -1,7 +1,7 @@
 extends EditorNode3DGizmoPlugin
 
 
-const CAMERA_DYNAMIC_3D = preload("CameraDynamic3D.gd")
+const CAMERA_DYNAMIC_3D = preload("CameraDynamic.gd")
 
 var width: float = .5
 var height: float = .3

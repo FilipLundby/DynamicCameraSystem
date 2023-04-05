@@ -1,6 +1,6 @@
 @tool
-@icon("CameraDynamic3D.svg")
-class_name CameraDynamic3D
+@icon("CameraDynamic.svg")
+class_name CameraDynamic
 extends Node3D
 
 signal camera_switched
@@ -23,7 +23,7 @@ var _current_rotation: Vector3
 
 
 func _enter_tree() -> void:
-	add_to_group(CameraDynamicBrain.CAMERA_GROUP, true)
+	add_to_group(CameraManager.CAMERA_GROUP, true)
 
 
 func _ready() -> void:
@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 	_camera = _viewport.get_camera_3d()
 	_current_transform = global_transform
-	CameraDynamicBrain.camera_switched.connect(_on_camera_switched)
+	CameraManager.camera_switched.connect(_on_camera_switched)
 	if is_current() and _camera != null:
 		_camera.global_transform = global_transform
 
@@ -66,4 +66,4 @@ func _on_camera_switched(node):
 
 
 func is_current():
-	return CameraDynamicBrain.current_camera == get_instance_id()
+	return CameraManager.current_camera == get_instance_id()

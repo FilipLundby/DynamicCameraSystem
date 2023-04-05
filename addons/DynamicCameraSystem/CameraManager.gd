@@ -1,54 +1,33 @@
-@tool
-extends Node3D
-class_name CameraManager
+extends Node
 
-signal current_camera_dropdown_changed
+signal camera_switched
 
 @onready var _tree: SceneTree = get_tree()
+const CAMERA_GROUP: String = "camera_dynamic"
 
-# camera index
-var _current_camera: int = 0:
-	set(camera_index):
-		if !Engine.is_editor_hint():
-			current_camera_dropdown_changed.emit(camera_index)
-		_current_camera = camera_index
-
-
-func _get_property_list():
-	var properties = []
-	var camera_names = []
-	
-	var cameras = _tree.get_nodes_in_group(CameraDynamicBrain.CAMERA_GROUP)
-
-	for i in len(cameras):
-		camera_names.append(cameras[i].name + ":" + str(i))
-
-	properties.append({
-		name = "_current_camera",
-		hint_string = ",".join(PackedStringArray(camera_names)),
-		hint = PROPERTY_HINT_ENUM,
-		type = TYPE_INT,
-		usage = PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_SCRIPT_VARIABLE,
-	})
-
-	return properties
+# The instance id of the node
+var current_camera: int = 0 
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
+	if current_camera != 0:
 		return
-	current_camera_dropdown_changed.connect(_on_current_camera_dropdown_changed)
-	_set_current_camera()
+	var cameras = get_cameras()
+	if len(cameras) > 0:
+		current_camera = cameras[0].get_instance_id()
 
 
-func _on_current_camera_dropdown_changed(value):
-	_set_current_camera()
+func set_current_camera(node: CameraDynamic) -> void:
+	current_camera = node.get_instance_id()
+	camera_switched.emit(node)
 
 
-func _set_current_camera():
-	var cameras = _tree.get_nodes_in_group(CameraDynamicBrain.CAMERA_GROUP)
-	if _current_camera >= 0 and _current_camera < len(cameras):
-		CameraDynamicBrain.set_current_camera(cameras[_current_camera])
+func get_current_camera() -> CameraDynamic:
+	return instance_from_id(current_camera)
+
+
+func get_cameras() -> Array:
+	return _tree.get_nodes_in_group(CAMERA_GROUP)
 
 
 
