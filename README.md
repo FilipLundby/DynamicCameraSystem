@@ -56,11 +56,11 @@ func _on_camera_switched(current_camera: CameraDynamic):
 ## CameraDynamic properties
 
 ```GDScript
-follow			# NodePath
-watch			# NodePath
-has_transition		# bool
-speed_movement		# float
-speed_rotation		# float
+follow			# A NodePath to a node that the camera should follow.
+watch			# A NodePath to a node that the camera should look at.
+has_transition		# Whether or not the camera should change position instantly or transition 
+speed_movement		# Position interpolation speed
+speed_rotation		# Rotation interpolation speed
 ```
 
 ## CameraManager signals
