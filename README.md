@@ -63,9 +63,9 @@ camera_switched
 
 ## Ideas for improvements
 
-* Centralize enabling/disabling of cameras
 * Allow non-interpolation using RemoteTransform
-* Accessing cameras through singleton
+* ~~Centralize enabling/disabling of cameras~~
+* ~~Accessing cameras through singleton~~
 
 
 ## About
