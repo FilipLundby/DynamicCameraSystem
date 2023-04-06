@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bod6yulaubebr"
-path="res://.godot/imported/CameraDynamic.svg-38d92e26328c420d54eafaf8d51be2ac.ctex"
+uid="uid://cu1f5t40xv1ef"
+path="res://.godot/imported/DynamicCameraSystem_Large.png-a9cbf214def8e41bfbf6dc2fdcb3b454.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/DynamicCameraSystem/CameraDynamic.svg"
-dest_files=["res://.godot/imported/CameraDynamic.svg-38d92e26328c420d54eafaf8d51be2ac.ctex"]
+source_file="res://DynamicCameraSystem_Large.png"
+dest_files=["res://.godot/imported/DynamicCameraSystem_Large.png-a9cbf214def8e41bfbf6dc2fdcb3b454.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

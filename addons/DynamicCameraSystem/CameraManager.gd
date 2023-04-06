@@ -17,12 +17,12 @@ func _ready() -> void:
 		current_camera = cameras[0].get_instance_id()
 
 
-func set_current_camera(node: CameraDynamic) -> void:
+func set_current_camera(node: CameraViewpoint) -> void:
 	current_camera = node.get_instance_id()
 	camera_switched.emit(node)
 
 
-func get_current_camera() -> CameraDynamic:
+func get_current_camera() -> CameraViewpoint:
 	return instance_from_id(current_camera)
 
 

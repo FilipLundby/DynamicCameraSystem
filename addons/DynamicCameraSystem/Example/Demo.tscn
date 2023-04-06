@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dd8ta24vw1hsj"]
+[gd_scene load_steps=15 format=3 uid="uid://d0dblrij85hbi"]
 
-[ext_resource type="Script" path="res://addons/DynamicCameraSystem/CameraDynamic.gd" id="1_531g5"]
+[ext_resource type="Script" path="res://addons/DynamicCameraSystem/CameraViewpoint.gd" id="1_o75kv"]
 [ext_resource type="Script" path="res://addons/DynamicCameraSystem/Example/Player.gd" id="2_t2gdl"]
 [ext_resource type="Material" uid="uid://d14avqjseikcf" path="res://addons/DynamicCameraSystem/Example/Pink.tres" id="2_ux2kq"]
 [ext_resource type="Script" path="res://addons/DynamicCameraSystem/Example/CameraNextButton.gd" id="3_p0810"]
@@ -85,7 +85,7 @@ transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -
 
 [node name="CameraDynamic1" type="Node3D" parent="." groups=["camera_dynamic"]]
 transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
-script = ExtResource("1_531g5")
+script = ExtResource("1_o75kv")
 
 [node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic1"]
 transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999998, -4.37115e-08, 0, 0, 0.2)
@@ -94,7 +94,7 @@ skeleton = NodePath("../..")
 
 [node name="CameraDynamic2" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
 transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
-script = ExtResource("1_531g5")
+script = ExtResource("1_o75kv")
 watch = NodePath("../Cube")
 follow = NodePath("../Path3D/PathFollow3D")
 has_transition = false
@@ -107,7 +107,7 @@ skeleton = NodePath("../..")
 
 [node name="CameraDynamic3" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
 transform = Transform3D(0.999872, -0.002152, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
-script = ExtResource("1_531g5")
+script = ExtResource("1_o75kv")
 watch = NodePath("../Player/PlayerMesh")
 follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
 speed_rotation = 3.0

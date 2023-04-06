@@ -1,7 +1,7 @@
 extends EditorNode3DGizmoPlugin
 
 
-const CAMERA_DYNAMIC = preload("CameraDynamic.gd")
+const CAMERA_DYNAMIC = preload("CameraViewpoint.gd")
 
 var width: float = .5
 var height: float = .3
@@ -9,7 +9,7 @@ var length: float = .5
 
 
 func _get_gizmo_name() -> String:
-	return "CameraDynamicGizmo"
+	return "CameraViewpointGizmo"
 
 
 func _init():

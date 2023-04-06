@@ -11,9 +11,9 @@ This plugin lets you:
 
 1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`.
 2. Add a `Camera3D` to your scene (if you haven't already).
-3. Add one or more `CameraDynamic` nodes.
+3. Add one or more `CameraViewpoint` nodes.
 
-You are now ready to make the `CameraDynamic` follow or look at whatever you want. See the exposed properties in the inspector.
+You are now ready to make the `CameraViewpoint` follow or look at whatever you want. See the exposed properties in the inspector.
 
 Optionally you can also add a `CameraSwitcher` node. It lets you manually switch between cameras. Useful while testing.
 
@@ -31,7 +31,7 @@ func _ready() -> void:
 
 ```GDScript
 func _ready() -> void:
-	var current_camera: CameraDynamic = CameraManager.get_current_camera()
+	var current_camera: CameraViewpoint = CameraManager.get_current_camera()
 ```
 
 ### Set a camera as current
@@ -46,7 +46,7 @@ func _ready() -> void:
 
 ```GDScript
 func _ready() -> void:
-	var cam = CameraDynamic.new()
+	var cam = CameraViewpoint.new()
 	# Add
 	add_child(cam)
 	# Remove
@@ -59,12 +59,12 @@ func _ready() -> void:
 func _ready() -> void:
 	CameraManager.camera_switched.connect(_on_camera_switched)
 
-func _on_camera_switched(current_camera: CameraDynamic):
+func _on_camera_switched(current_camera: CameraViewpoint):
 	print("The current camera is: ", current_camera.name)
 ```
 
 
-## CameraDynamic properties
+## CameraViewpoint properties
 
 ```GDScript
 follow		# A node the camera should follow

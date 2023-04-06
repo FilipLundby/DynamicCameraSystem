@@ -1,6 +1,6 @@
 @tool
-@icon("CameraDynamic.svg")
-class_name CameraDynamic
+@icon("DynamicCameraSystem.svg")
+class_name CameraViewpoint
 extends Node3D
 
 signal camera_switched
