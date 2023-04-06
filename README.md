@@ -4,7 +4,7 @@ This plugin lets you:
 
 * dynamically tween between camera position
 * and/or smooth follow a node of your choise
-* and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
+* and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots built-in method)
 
 Here an example where the camera follows and looks at the player, then changes position when the player enters the car:
 
