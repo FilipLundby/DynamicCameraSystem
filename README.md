@@ -7,6 +7,9 @@ This plugin lets you:
 * and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
 
 
+![](https://i.imgur.com/tAxuoPs.mp4)
+
+
 ## Usage
 
 1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`.
