@@ -11,6 +11,8 @@ Here an example where the camera follows and looks at the player, then changes p
 
 https://user-images.githubusercontent.com/9482792/230415669-416aa94c-1505-489f-a837-964c5ea4f2fe.mp4
 
+<sub>Models by [@quaternius](https://twitter.com/quaternius) and [@kenneynl](https://twitter.com/KenneyNL).</sub>
+
 
 ## Usage
 
