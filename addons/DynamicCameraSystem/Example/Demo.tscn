@@ -87,16 +87,16 @@ transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -
 script = ExtResource("5_8xgbm")
 _current_camera = 0
 
-[node name="CameraDynamic1" type="Node3D" parent="." groups=["camera_dynamic"]]
+[node name="CameraViewpointStatic" type="Node3D" parent="." groups=["camera_dynamic"]]
 transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
 script = ExtResource("1_o75kv")
 
-[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic1"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraViewpointStatic"]
 transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999998, -4.37115e-08, 0, 0, 0.2)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
 
-[node name="CameraDynamic2" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
+[node name="CameraViewpointFollowPath" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
 transform = Transform3D(0.057334, 0, 0.9983, 0, 0.999999, 0, -0.998348, 0, 0.0573374, 9.89338, -0.0194249, -2.41772)
 script = ExtResource("1_o75kv")
 watch = NodePath("../Cube")
@@ -104,17 +104,19 @@ follow = NodePath("../Path3D/PathFollow3D")
 has_transition = false
 speed_rotation = 5.0
 
-[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic2"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraViewpointFollowPath"]
 transform = Transform3D(1.00006, 0, 0, 0, -4.37116e-08, -1, 0, 1.00001, -4.37115e-08, 0, 0, 0.2)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
 
-[node name="CameraDynamic3" type="Node3D" parent="." groups=["camera_dynamic"]]
+[node name="CameraViewpointFollowPlayer" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
 transform = Transform3D(0.999872, -0.002152, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
 script = ExtResource("1_o75kv")
+watch = NodePath("../Player")
+follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
 speed_rotation = 3.0
 
-[node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic3"]
+[node name="DebugMesh" type="MeshInstance3D" parent="CameraViewpointFollowPlayer"]
 transform = Transform3D(1.00001, 0, -4.65661e-10, -2.32831e-10, -4.47035e-08, -1, 1.86265e-09, 1.00005, -2.98023e-08, 0, 0, 0.300016)
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
