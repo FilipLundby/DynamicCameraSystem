@@ -6,8 +6,9 @@ This plugin lets you:
 * and/or smooth follow a node of your choise
 * and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
 
+Here an example where the camrea position changes after the player enters the car:
 
-<video src='https://i.imgur.com/PXOOmbg.mp4'></video>
+![Demo](https://i.imgur.com/gMpSwHH.gif)
 
 
 ## Usage
