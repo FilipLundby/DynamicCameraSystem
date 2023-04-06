@@ -8,7 +8,4 @@
 /icon.png                      export-ignore
 /icon.png.import               export-ignore
 /project.godot                 export-ignore
-/CameraDynamic.png             export-ignore
-/CameraDynamic.png.import      export-ignore
-/CameraDynamic.svg             export-ignore
-/CameraDynamic.svg.import      export-ignore
+/images/                       export-ignore

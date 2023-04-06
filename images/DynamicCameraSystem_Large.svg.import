@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://npqc60t11lle"
-path="res://.godot/imported/DynamicCameraSystem_Large.svg-2d773ef328ab8fe206968c821e509fcd.ctex"
+path="res://.godot/imported/DynamicCameraSystem_Large.svg-d3841e9f2f4472132d1bdf66b46b8e04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DynamicCameraSystem_Large.svg"
-dest_files=["res://.godot/imported/DynamicCameraSystem_Large.svg-2d773ef328ab8fe206968c821e509fcd.ctex"]
+source_file="res://images/DynamicCameraSystem_Large.svg"
+dest_files=["res://.godot/imported/DynamicCameraSystem_Large.svg-d3841e9f2f4472132d1bdf66b46b8e04.ctex"]
 
 [params]
 
