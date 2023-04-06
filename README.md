@@ -83,6 +83,7 @@ camera_switched
 ## Ideas for improvements
 
 * Allow non-interpolation using RemoteTransform
+* Trigger areas (RE style)
 * ~~Centralize enabling/disabling of cameras~~
 * ~~Accessing cameras through singleton~~
 
