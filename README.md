@@ -80,6 +80,14 @@ speed_rotation	# Rotation interpolation speed
 camera_switched
 ```
 
+## Troubleshooting
+
+* If you see something like the below error, the CameraManger autoload may have been removed. Try disabling and enabling the Dyanmic Camera System under the plugins tab.
+	```
+	Parse Error: Identifier "CameraManager" not declared in the current scope.
+	```
+
+
 ## Ideas for improvements
 
 * Allow non-interpolation using RemoteTransform

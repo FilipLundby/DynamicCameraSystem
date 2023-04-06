@@ -83,6 +83,10 @@ mesh = SubResource("BoxMesh_0b0w8")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, 0.612372, -0.612373, 15.8086, 0, -8)
 
+[node name="CameraSwitcher" type="Node3D" parent="."]
+script = ExtResource("5_8xgbm")
+_current_camera = 0
+
 [node name="CameraDynamic1" type="Node3D" parent="." groups=["camera_dynamic"]]
 transform = Transform3D(0.74579, -0.382106, 0.545704, 0, 0.819152, 0.573576, -0.666181, -0.427768, 0.610916, 11.0137, 3.16755, 2.94762)
 script = ExtResource("1_o75kv")
@@ -105,11 +109,9 @@ transform = Transform3D(1.00006, 0, 0, 0, -4.37116e-08, -1, 0, 1.00001, -4.37115
 mesh = SubResource("PrismMesh_fakjx")
 skeleton = NodePath("../..")
 
-[node name="CameraDynamic3" type="Node3D" parent="." node_paths=PackedStringArray("watch", "follow") groups=["camera_dynamic"]]
+[node name="CameraDynamic3" type="Node3D" parent="." groups=["camera_dynamic"]]
 transform = Transform3D(0.999872, -0.002152, 0.0153967, 0, 0.990381, 0.138353, -0.0155532, -0.138344, 0.990209, 9.77624, 1.82666, 1.16869)
 script = ExtResource("1_o75kv")
-watch = NodePath("../Player/PlayerMesh")
-follow = NodePath("../Player/PlayerMesh/FollowTargetDebug")
 speed_rotation = 3.0
 
 [node name="DebugMesh" type="MeshInstance3D" parent="CameraDynamic3"]
@@ -170,7 +172,3 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Next Camera"
 script = ExtResource("3_p0810")
-
-[node name="CameraSwitcher" type="Node3D" parent="."]
-script = ExtResource("5_8xgbm")
-_current_camera = 2
