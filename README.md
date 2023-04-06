@@ -7,7 +7,7 @@ This plugin lets you:
 * and/or look at a node of your choise (called `watch` to avoid naming conflicts with Godots build-in method)
 
 
-![](https://i.imgur.com/tAxuoPs.mp4)
+<video src='https://i.imgur.com/PXOOmbg.mp4' />
 
 
 ## Usage
