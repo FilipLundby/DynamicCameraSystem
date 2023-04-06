@@ -8,11 +8,8 @@ This plugin lets you:
 
 Here an example where the camrea position changes after the player enters the car:
 
-![Demo](https://user-images.githubusercontent.com/9482792/230413846-ba8b0ecb-5e57-4efd-b235-35c562a37ce8.mp4)
 
-
-
-
+https://user-images.githubusercontent.com/9482792/230415669-416aa94c-1505-489f-a837-964c5ea4f2fe.mp4
 
 
 ## Usage
