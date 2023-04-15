@@ -17,8 +17,8 @@ https://user-images.githubusercontent.com/9482792/230415669-416aa94c-1505-489f-a
 ## Usage
 
 1. [Install the plugin](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html) and enable it through `Project Settings` -> `Plugins`. You may need to restart Godot, before enabling the plugin.
-2. Add a `Camera3D` to your scene (if you haven't already).
-3. Add one or more `CameraViewpoint` nodes.
+2. Add a `Camera3D` to your scene (at root level of your scene).
+3. Add one or more `CameraViewpoint` (at root level of your scene).
 
 
 You are now ready to make the `CameraViewpoint` follow or look at whatever you want. See the exposed properties in the inspector.
